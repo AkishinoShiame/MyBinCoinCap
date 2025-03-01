@@ -103,7 +103,7 @@
                 for (PickedDataSrc of CapDataSource){
                     let mp1 = document.createElement('object');
                     mp1.setAttribute('type','text/html');
-                    mp1.setAttribute('data','https://www.binance.com/en/trade/KAITO_USDT?ref=40896146');
+                    mp1.setAttribute('data',PickedDataSrc["Url"]);
                     let mp1father = document.createElement('div');
                     mp1father.setAttribute('class','rol');
                     mp1father.setAttribute('id',('_' + PickedDataSrc["Pair"]));
