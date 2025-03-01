@@ -31,7 +31,7 @@
             <label for="FormControlDescription" class="form-label"><h6>CryptoPairs</h6></label>
             <textarea class="form-control" id="Pair" rows="3">KAITOUSDT, BERAUSDT, LAYERUSDT, SHELLUSDT, ANIMEUSDT, ACTUSDT, CGPTUSDT, REDUSDT</textarea>
             <div id="PairHelp" class="form-text"><b>EX:BNBUSDT</b></div>
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary" onclick="UpdatePair()">Update</button>
         </form>
         <table class="table table-striped">
             <thead>
@@ -45,8 +45,8 @@
         <script>
             let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
             function UpdatePair(){
-                const textFieldValue = document.getElementById('Pair').value;
-                const cryptoList = textFieldValue.split(',').map(item => item.trim());
+                let textFieldValue = document.getElementById('Pair').value;
+                let cryptoList = textFieldValue.split(',').map(item => item.trim());
                 for (Pairs of cryptoList){
                     let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
                     let col1 = document.createElement('th');
