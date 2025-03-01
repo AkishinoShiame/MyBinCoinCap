@@ -101,14 +101,14 @@
                 ];
                 let filler = document.getElementById("CapChart");
                 for (PickedDataSrc of CapDataSource){
-                    let mp1 = document.createElement('object');
-                    mp1.setAttribute('type','text/html');
-                    mp1.setAttribute('data',PickedDataSrc["Url"]);
+                    let mp1 = document.createElement('a');
+                    mp1.setAttribute('href',PickedDataSrc["Url"]);
+                    mp1.innerText = PickedDataSrc["Url"];
                     let mp1father = document.createElement('div');
                     mp1father.setAttribute('class','rol');
                     mp1father.setAttribute('id',('_' + PickedDataSrc["Pair"]));
                     filler.appendChild(mp1father);
-                    document.getElementById('_' + PickedDataSrc["Pair"]).innerHTML = "<h1>" + PickedDataSrc["Pair"] + "</h1>";
+                    document.getElementById('_' + PickedDataSrc["Pair"]).innerHTML = "<h4>" + PickedDataSrc["Pair"] + "</h4>";
                     document.getElementById('_' + PickedDataSrc["Pair"]).appendChild(mp1);
                 };
             };
