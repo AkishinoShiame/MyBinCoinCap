@@ -14,7 +14,15 @@
     <link href="https://akishinoshiame.github.io/MyBinCoinCap/css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.min.js"></script>
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.bundle.min.js"></script>
-    <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/script.js"></script>
+    <script>
+        function MyBinanceHttpGet(theUrl)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        };
+    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -36,20 +44,23 @@
         </table>
         <script>
             let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
-            const textFieldValue = document.getElementById('Pair').value;
-            const cryptoList = textFieldValue.split(',').map(item => item.trim());
-            for (Pairs of cryptoList){
-                let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
-                let col1 = document.createElement('th');
-                col1.setAttribute('scope','row');
-                col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
-                let col2 = document.createElement('td');
-                col2.innerText = Object.keys(result).find(k => k === "price") ? result["price"] : undefined;
-                let NewRow = document.createElement('tr');
-                NewRow.appendChild(col1);
-                NewRow.appendChild(col2);
-                document.getElementById('ResultTable').appendChild(NewRow);
+            function UpdatePair(){
+                const textFieldValue = document.getElementById('Pair').value;
+                const cryptoList = textFieldValue.split(',').map(item => item.trim());
+                for (Pairs of cryptoList){
+                    let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
+                    let col1 = document.createElement('th');
+                    col1.setAttribute('scope','row');
+                    col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
+                    let col2 = document.createElement('td');
+                    col2.innerText = Object.keys(result).find(k => k === "price") ? result["price"] : undefined;
+                    let NewRow = document.createElement('tr');
+                    NewRow.appendChild(col1);
+                    NewRow.appendChild(col2);
+                    document.getElementById('ResultTable').appendChild(NewRow);
+                }
             }
+            UpdatePair();
         </script>
     </div>
 </body>
