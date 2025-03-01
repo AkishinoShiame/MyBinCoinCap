@@ -88,24 +88,28 @@
             </div>
         </div>
         <script type="text/javascript">
-            const CapDataSource = [
-                {"Pair":"KAITOUSDT","Url":"https://www.binance.com/en/trade/KAITO_USDT?type=spot"},
-                {"Pair":"BERAUSDT","Url":"https://www.binance.com/en/trade/BERA_USDT?type=spot"},
-                {"Pair":"LAYERUSDT","Url":"https://www.binance.com/en/trade/LAYER_USDT?type=spot"},
-                {"Pair":"SHELLUSDT","Url":"https://www.binance.com/en/trade/SHELL_USDT?type=spot"},
-                {"Pair":"ANIMEUSDT","Url":"https://www.binance.com/en/trade/ANIME_USDT?type=spot"},
-                {"Pair":"ACTUSDT","Url":"https://www.binance.com/en/trade/ACT_USDT?type=spot"},
-                {"Pair":"CGPTUSDT","Url":"https://www.binance.com/en/trade/CGPT_USDT?type=spot"},
-                {"Pair":"REDUSDT","Url":"https://www.binance.com/en/trade/RED_USDT?type=spot"}
-            ];
             function DrawCapChart() {
+                const CapDataSource = [
+                    {"Pair":"KAITOUSDT","Url":"https://www.binance.com/en/trade/KAITO_USDT?type=spot"},
+                    {"Pair":"BERAUSDT","Url":"https://www.binance.com/en/trade/BERA_USDT?type=spot"},
+                    {"Pair":"LAYERUSDT","Url":"https://www.binance.com/en/trade/LAYER_USDT?type=spot"},
+                    {"Pair":"SHELLUSDT","Url":"https://www.binance.com/en/trade/SHELL_USDT?type=spot"},
+                    {"Pair":"ANIMEUSDT","Url":"https://www.binance.com/en/trade/ANIME_USDT?type=spot"},
+                    {"Pair":"ACTUSDT","Url":"https://www.binance.com/en/trade/ACT_USDT?type=spot"},
+                    {"Pair":"CGPTUSDT","Url":"https://www.binance.com/en/trade/CGPT_USDT?type=spot"},
+                    {"Pair":"REDUSDT","Url":"https://www.binance.com/en/trade/RED_USDT?type=spot"}
+                ];
                 let filler = document.getElementById("CapChart");
                 for (PickedDataSrc of CapDataSource){
-                    alert(PickedDataSrc);
-                    alert(PickedDataSrc[Pair] + " || " + PickedDataSrc[Url]);
+                    alert(PickedDataSrc["Pair"] + " || " + PickedDataSrc["Url"]);
                     let mp1 = document.createElement('object');
                     mp1.setAttribute('type','text/html');
                     mp1.setAttribute('data','https://www.binance.com/en/trade/KAITO_USDT?ref=40896146');
+                    let mp1father = document.createElement('div');
+                    mp1father.setAttribute('class','rol');
+                    mp1father.innerHTML = "<h1>" + PickedDataSrc["Pair"] + "</h1>";
+                    mp1father.appendChild(mp1);
+                    filler.appendChild(mp1father);
                 }
             };
         </script>
