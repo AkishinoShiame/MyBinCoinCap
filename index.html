@@ -31,7 +31,7 @@
             <label for="FormControlDescription" class="form-label"><h6>CryptoPairs</h6></label>
             <textarea class="form-control" id="Pair" rows="3">KAITOUSDT, BERAUSDT, LAYERUSDT, SHELLUSDT, ANIMEUSDT, ACTUSDT, CGPTUSDT, REDUSDT</textarea>
             <div id="PairHelp" class="form-text"><b>EX:BNBUSDT</b></div>
-            <button type="button" class="btn btn-primary" onclick="UpdatePair()">Update</button>
+            <button type="button" class="btn btn-primary" onclick="FreshTable();UpdatePair()">Update</button>
         </form>
         <table class="table table-striped">
             <thead>
@@ -59,6 +59,9 @@
                     NewRow.appendChild(col2);
                     document.getElementById('ResultTable').appendChild(NewRow);
                 }
+            }
+            function FreshTable(){
+                getElementById('ResultTable').innerHTML = "";
             }
             UpdatePair();
         </script>
