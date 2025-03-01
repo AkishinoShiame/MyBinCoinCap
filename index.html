@@ -14,6 +14,7 @@
     <link href="https://akishinoshiame.github.io/MyBinCoinCap/css/bootstrap-utilities.rtl.min.css" rel="stylesheet">
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.min.js"></script>
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.bundle.min.js"></script>
+    <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/dist/chart.umd.js"></script>
     <script>
         function MyBinanceHttpGet(theUrl)
         {
@@ -26,45 +27,61 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Cryptocurrency USDT Prices</h1>
-        <form>
-            <label for="FormControlDescription" class="form-label"><h6>CryptoPairs</h6></label>
-            <textarea class="form-control" id="Pair" rows="3">KAITOUSDT, BERAUSDT, LAYERUSDT, SHELLUSDT, ANIMEUSDT, ACTUSDT, CGPTUSDT, REDUSDT</textarea>
-            <div id="PairHelp" class="form-text"><b>EX:BNBUSDT</b></div>
-            <button type="button" class="btn btn-primary" onclick="FreshTable();UpdatePair()">Update</button>
-        </form>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">#symbol</th>
-                <th scope="col">price</th>
-                </tr>
-            </thead>
-            <tbody id="ResultTable"></tbody>
-        </table>
-        <script>
-            let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
-            function UpdatePair(){
-                let textFieldValue = document.getElementById('Pair').value;
-                let cryptoList = textFieldValue.split(',').map(item => item.trim());
-                for (Pairs of cryptoList){
-                    let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
-                    let col1 = document.createElement('th');
-                    col1.setAttribute('scope','row');
-                    col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
-                    let col2 = document.createElement('td');
-                    col2.innerText = Object.keys(result).find(k => k === "price") ? result["price"] : undefined;
-                    let NewRow = document.createElement('tr');
-                    NewRow.appendChild(col1);
-                    NewRow.appendChild(col2);
-                    document.getElementById('ResultTable').appendChild(NewRow);
+        <div class="rol">
+            <div class="col-11">
+            <h1>Cryptocurrency USDT Prices</h1>
+            <form>
+                <label for="FormControlDescription" class="form-label"><h6>CryptoPairs</h6></label>
+                <textarea class="form-control" id="Pair" rows="3">KAITOUSDT, BERAUSDT, LAYERUSDT, SHELLUSDT, ANIMEUSDT, ACTUSDT, CGPTUSDT, REDUSDT</textarea>
+                <div id="PairHelp" class="form-text"><b>EX:BNBUSDT</b></div>
+                <button type="button" class="btn btn-primary" onclick="FreshTable();UpdatePair()">Update</button>
+            </form>
+            </div>
+        </div>
+        <div class="rol">
+            <div class="col-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">#symbol</th>
+                    <th scope="col">price</th>
+                    </tr>
+                </thead>
+                <tbody id="ResultTable"></tbody>
+            </table>
+            <script>
+                let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
+                function UpdatePair(){
+                    let textFieldValue = document.getElementById('Pair').value;
+                    let cryptoList = textFieldValue.split(',').map(item => item.trim());
+                    for (Pairs of cryptoList){
+                        let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
+                        let col1 = document.createElement('th');
+                        col1.setAttribute('scope','row');
+                        col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
+                        let col2 = document.createElement('td');
+                        col2.innerText = Object.keys(result).find(k => k === "price") ? result["price"] : undefined;
+                        let NewRow = document.createElement('tr');
+                        NewRow.appendChild(col1);
+                        NewRow.appendChild(col2);
+                        document.getElementById('ResultTable').appendChild(NewRow);
+                    }
                 }
-            }
-            function FreshTable(){
-                document.getElementById('ResultTable').innerHTML = "";
-            }
-            UpdatePair();
-        </script>
+                function FreshTable(){
+                    document.getElementById('ResultTable').innerHTML = "";
+                }
+                UpdatePair();
+            </script>
+            </div>
+        </div>
+        <div class="rol">
+            <div class="col">
+                <div class="container mt-5">
+                    <h2>Coin Cap Chart</h2>
+                    <canvas id="myChart"></canvas>
+                </div>                
+            </div>
+        </div>
     </div>
 </body>
 </html>
