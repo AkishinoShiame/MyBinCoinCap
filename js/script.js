@@ -1,4 +1,4 @@
-function MyBinanceHttpGet(theUrl)
+!function MyBinanceHttpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
