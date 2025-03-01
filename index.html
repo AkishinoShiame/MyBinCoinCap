@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/dist/chart.umd.js"></script>
-    <script>
+    <script type="text/javascript">
         function MyBinanceHttpGet(theUrl)
         {
             var xmlHttp = new XMLHttpRequest();
@@ -44,7 +44,7 @@
         </div>
         <div class="rol">
             <div class="col-10">
-            <table class="table table-striped">
+            <table class="table table-striped" id="PairTableResult">
                 <thead>
                     <tr>
                     <th scope="col">#symbol</th>
@@ -53,7 +53,7 @@
                 </thead>
                 <tbody id="ResultTable"></tbody>
             </table>
-            <script>
+            <script type="text/javascript">
                 let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
                 function UpdatePair(){
                     let textFieldValue = document.getElementById('Pair').value;
@@ -82,44 +82,31 @@
             <div class="col">
                 <div class="container mt-5">
                     <h2>Coin Cap Chart</h2>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="CapChart"></canvas>
                 </div>
                 <button type="button" class="btn btn-info" onclick="DrawCapChart()">Draw!</button>
             </div>
         </div>
-        <script>
+        <script type="text/javascript">
+            const CapDataSource = [
+                {"Pair":"KAITOUSDT","Url":"https://www.binance.com/en/trade/KAITO_USDT?type=spot"},
+                {"Pair":"BERAUSDT","Url":"https://www.binance.com/en/trade/BERA_USDT?type=spot"},
+                {"Pair":"LAYERUSDT","Url":"https://www.binance.com/en/trade/LAYER_USDT?type=spot"},
+                {"Pair":"SHELLUSDT","Url":"https://www.binance.com/en/trade/SHELL_USDT?type=spot"},
+                {"Pair":"ANIMEUSDT","Url":"https://www.binance.com/en/trade/ANIME_USDT?type=spot"},
+                {"Pair":"ACTUSDT","Url":"https://www.binance.com/en/trade/ACT_USDT?type=spot"},
+                {"Pair":"CGPTUSDT","Url":"https://www.binance.com/en/trade/CGPT_USDT?type=spot"},
+                {"Pair":"REDUSDT","Url":"https://www.binance.com/en/trade/RED_USDT?type=spot"}
+            ];
             function DrawCapChart() {
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Category 1', 'Category 2', 'Category 3'],
-                        datasets: [{
-                            label: 'Values',
-                            data: [10, 20, 30],
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(75, 192, 192, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(75, 192, 192, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
-                });
+                let filler = document.getElementById("CapChart");
+                for (PickedDataSrc of CapDataSource){
+                    alert(PickedDataSrc);
+                    alert(PickedDataSrc[Pair] + " || " + PickedDataSrc[Url]);
+                    let mp1 = document.createElement('object');
+                    mp1.setAttribute('type','text/html');
+                    mp1.setAttribute('data','https://www.binance.com/en/trade/KAITO_USDT?ref=40896146');
+                }
             };
         </script>
     </div>
