@@ -39,7 +39,7 @@
             const textFieldValue = document.getElementById('Pair').value;
             const cryptoList = textFieldValue.split(',').map(item => item.trim());
             for (Pairs of cryptoList){
-                let result = JSON.parse(httpGet(API_Base + Pairs));
+                let result = JSON.parse(MyBinanceHttpGet(API_Base + Pairs));
                 let col1 = document.createElement('th');
                 col1.setAttribute('scope','row');
                 col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
