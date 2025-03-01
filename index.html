@@ -103,6 +103,7 @@
                 for (PickedDataSrc of CapDataSource){
                     let mp1 = document.createElement('a');
                     mp1.setAttribute('href',PickedDataSrc["Url"]);
+                    mp1.setAttribute('target','_top');
                     mp1.innerText = PickedDataSrc["Url"];
                     let mp1father = document.createElement('div');
                     mp1father.setAttribute('class','rol');
