@@ -4,12 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binance API Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-utilities.min.css" rel="stylesheet">
+    <script type="javascript" src="./js/bootstrap.min.js"></script>
+    <script type="javascript" src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
 </head>
 <body>
-    <h1>Cryptocurrency USDT Prices</h1>
-    <canvas id="crypto-chart" width="400" height="200"></canvas>
-    <ul id="crypto-list"></ul>
-    <script src="script.js"></script>
+    <div class="container-fluid">
+        <h1>Cryptocurrency USDT Prices</h1>
+        <form>
+            <label for="FormControlDescription" class="form-label"><h6>CryptoPairs</h6></label>
+            <textarea class="form-control" id="Pair" rows="3">KAITOUSDT, BERAUSDT, LAYERUSDT, SHELLUSDT, ANIMEUSDT, ACTUSDT, CGPTUSDT, REDUSDT</textarea>
+            <div id="PairHelp" class="form-text"><b>EX:BNBUSDT</b></div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">#symbol</th>
+                <th scope="col">price</th>
+                </tr>
+            </thead>
+            <tbody id="ResultTable"></tbody>
+        </table>
+        <script>
+            let API_Base="https://api.binance.com/api/v3/ticker/price?symbol=";
+            const textFieldValue = document.getElementById('Pair').value;
+            const cryptoList = textFieldValue.split(',').map(item => item.trim());
+            for (Pairs of cryptoList){
+                let result = JSON.parse(httpGet(API_Base + Pairs));
+                let col1 = document.createElement('th');
+                col1.setAttribute('scope','row');
+                col1.innerText = Object.keys(result).find(k => k === "symbol") ? result["symbol"] : undefined;
+                let col2 = document.createElement('td');
+                col2.innerText = Object.keys(result).find(k => k === "price") ? result["price"] : undefined;
+                let NewRow = document.createElement('tr');
+                NewRow.appendChild(col1);
+                NewRow.appendChild(col2);
+                document.getElementById('ResultTable').appendChild(NewRow);
+            }
+        </script>
+    </div>
 </body>
 </html>
