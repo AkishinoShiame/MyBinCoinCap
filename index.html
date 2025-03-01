@@ -15,6 +15,15 @@
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.min.js"></script>
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/bootstrap.bundle.min.js"></script>
     <script type="javascript" src="https://akishinoshiame.github.io/MyBinCoinCap/js/script.js"></script>
+    <script>
+function MyBinanceHttpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+};
+    </script>
 </head>
 <body>
     <div class="container-fluid">
